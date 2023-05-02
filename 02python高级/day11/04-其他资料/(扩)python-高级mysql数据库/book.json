@@ -1,0 +1,12 @@
+{
+  "title": "python高级",
+  "description": "传智播客-python学科",
+  "language": "zh",
+  "github": "binge",
+  "plugins": [
+    "-search",
+    "toggle-chapters",
+    "splitter",
+    "emphasize"
+  ]
+}

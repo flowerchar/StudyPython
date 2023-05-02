@@ -1,0 +1,729 @@
+<!DOCTYPE HTML>
+<html lang="zh-tw" >
+    <!-- Start book python高级 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>演练-分组和聚合函数的组合使用 | python高级</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-emphasize/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../mysqlhigh/index.html" />
+    
+    
+    <link rel="prev" href="../mysqlquery/外键SQL语句的编写.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="2.10"
+        data-chapter-title="演练-分组和聚合函数的组合使用"
+        data-filepath="mysqlquery/分组和聚合函数的组合使用.md"
+        data-basepath=".."
+        data-revision="Tue Feb 04 2020 09:08:19 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介紹
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="mysqlbase/index.html">
+            
+                
+                    <a href="../mysqlbase/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        MySQL数据库的基本使用
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="mysqlbase/数据库.html">
+            
+                
+                    <a href="../mysqlbase/数据库.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="mysqlbase/关系型数据库管理系统.html">
+            
+                
+                    <a href="../mysqlbase/关系型数据库管理系统.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        关系型数据库管理系统
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="mysqlbase/MySQL数据库.html">
+            
+                
+                    <a href="../mysqlbase/MySQL数据库.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        MySQL数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="mysqlbase/数据类型和约束.html">
+            
+                
+                    <a href="../mysqlbase/数据类型和约束.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        数据类型和约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="mysqlbase/命令行客户端MySQL的使用.html">
+            
+                
+                    <a href="../mysqlbase/命令行客户端MySQL的使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        命令行客户端MySQL的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="mysqlbase/as和distinct关键字.html">
+            
+                
+                    <a href="../mysqlbase/as和distinct关键字.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        as和distinct关键字
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="mysqlbase/where条件查询.html">
+            
+                
+                    <a href="../mysqlbase/where条件查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        where条件查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="mysqlbase/排序.html">
+            
+                
+                    <a href="../mysqlbase/排序.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="mysqlbase/分页查询.html">
+            
+                
+                    <a href="../mysqlbase/分页查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        分页查询
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="mysqlquery/index.html">
+            
+                
+                    <a href="../mysqlquery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        MySQL数据库的条件查询
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="mysqlquery/聚合函数.html">
+            
+                
+                    <a href="../mysqlquery/聚合函数.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        聚合函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="mysqlquery/分组查询.html">
+            
+                
+                    <a href="../mysqlquery/分组查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        分组查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="mysqlquery/内连接.html">
+            
+                
+                    <a href="../mysqlquery/内连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        连接查询-内连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="mysqlquery/左连接.html">
+            
+                
+                    <a href="../mysqlquery/左连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        连接查询-左连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="mysqlquery/右连接.html">
+            
+                
+                    <a href="../mysqlquery/右连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        连接查询-右连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="mysqlquery/自连接.html">
+            
+                
+                    <a href="../mysqlquery/自连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        连接查询-自连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="mysqlquery/子查询.html">
+            
+                
+                    <a href="../mysqlquery/子查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        子查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="mysqlquery/数据库设计之三范式.html">
+            
+                
+                    <a href="../mysqlquery/数据库设计之三范式.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        数据库设计之三范式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="mysqlquery/外键SQL语句的编写.html">
+            
+                
+                    <a href="../mysqlquery/外键SQL语句的编写.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                        外键约束SQL语句的编写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.10" data-path="mysqlquery/分组和聚合函数的组合使用.html">
+            
+                
+                    <a href="../mysqlquery/分组和聚合函数的组合使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        演练-分组和聚合函数的组合使用
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="mysqlhigh/index.html">
+            
+                
+                    <a href="../mysqlhigh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        MySQL数据库的高级使用
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="mysqlhigh/将查询结果插入到其它表中.html">
+            
+                
+                    <a href="../mysqlhigh/将查询结果插入到其它表中.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        将查询结果插入到其它表中
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="mysqlhigh/使用连接更新表中某个字段数据.html">
+            
+                
+                    <a href="../mysqlhigh/使用连接更新表中某个字段数据.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        使用连接更新表中某个字段数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="mysqlhigh/创建表并给某个字段添加数据.html">
+            
+                
+                    <a href="../mysqlhigh/创建表并给某个字段添加数据.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        创建表并给某个字段添加数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="mysqlhigh/修改表结构.html">
+            
+                
+                    <a href="../mysqlhigh/修改表结构.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        修改goods表结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="mysqlhigh/事务.html">
+            
+                
+                    <a href="../mysqlhigh/事务.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        事务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="mysqlhigh/索引.html">
+            
+                
+                    <a href="../mysqlhigh/索引.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        索引
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="mysqlhigh/PyMySQL的使用.html">
+            
+                
+                    <a href="../mysqlhigh/PyMySQL的使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        PyMySQL的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="mysqlhigh/京东数据库案例练习.html">
+            
+                
+                    <a href="../mysqlhigh/京东数据库案例练习.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        京东数据库案例练习
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本書使用 GitBook 釋出
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >python高级</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="&#x6F14;&#x7EC3;&#x5206;&#x7EC4;&#x548C;&#x805A;&#x5408;&#x51FD;&#x6570;&#x7684;&#x7EC4;&#x5408;&#x4F7F;&#x7528;">&#x6F14;&#x7EC3;-&#x5206;&#x7EC4;&#x548C;&#x805A;&#x5408;&#x51FD;&#x6570;&#x7684;&#x7EC4;&#x5408;&#x4F7F;&#x7528;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x80FD;&#x591F;&#x5199;&#x51FA;&#x5206;&#x7EC4;&#x548C;&#x805A;&#x5408;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x4F7F;&#x7528;&#x7684;SQL&#x8BED;&#x53E5;</li>
+</ul>
+<hr>
+<h3 id="1-&#x6570;&#x636E;&#x51C6;&#x5907;">1. &#x6570;&#x636E;&#x51C6;&#x5907;</h3>
+<pre><code class="lang-sql"><span class="hljs-comment">-- &#x521B;&#x5EFA; &quot;&#x4EAC;&#x4E1C;&quot; &#x6570;&#x636E;&#x5E93;</span>
+<span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> jing_dong <span class="hljs-keyword">charset</span>=utf8;</span>
+
+<span class="hljs-comment">-- &#x4F7F;&#x7528; &quot;&#x4EAC;&#x4E1C;&quot; &#x6570;&#x636E;&#x5E93;</span>
+<span class="hljs-operator"><span class="hljs-keyword">use</span> jing_dong;</span>
+
+<span class="hljs-comment">-- &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5546;&#x54C1;goods&#x6570;&#x636E;&#x8868;</span>
+<span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> goods(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span> <span class="hljs-keyword">unsigned</span> primary <span class="hljs-keyword">key</span> auto_increment <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">150</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>,
+    cate_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">40</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>,
+    brand_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">40</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>,
+    price <span class="hljs-built_in">decimal</span>(<span class="hljs-number">10</span>,<span class="hljs-number">3</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">0</span>,
+    is_show <span class="hljs-built_in">bit</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">1</span>,
+    is_saleoff <span class="hljs-built_in">bit</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">0</span>
+);</span>
+
+<span class="hljs-comment">-- &#x5411;goods&#x8868;&#x4E2D;&#x63D2;&#x5165;&#x6570;&#x636E;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;r510vc 15.6&#x82F1;&#x5BF8;&#x7B14;&#x8BB0;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x534E;&#x7855;&apos;</span>,<span class="hljs-string">&apos;3399&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;y400n 14.0&#x82F1;&#x5BF8;&#x7B14;&#x8BB0;&#x672C;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8054;&#x60F3;&apos;</span>,<span class="hljs-string">&apos;4999&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;g150th 15.6&#x82F1;&#x5BF8;&#x6E38;&#x620F;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x6E38;&#x620F;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x96F7;&#x795E;&apos;</span>,<span class="hljs-string">&apos;8499&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;x550cc 15.6&#x82F1;&#x5BF8;&#x7B14;&#x8BB0;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x534E;&#x7855;&apos;</span>,<span class="hljs-string">&apos;2799&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;x240 &#x8D85;&#x6781;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8D85;&#x7EA7;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8054;&#x60F3;&apos;</span>,<span class="hljs-string">&apos;4880&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;u330p 13.3&#x82F1;&#x5BF8;&#x8D85;&#x6781;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8D85;&#x7EA7;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8054;&#x60F3;&apos;</span>,<span class="hljs-string">&apos;4299&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;svp13226scb &#x89E6;&#x63A7;&#x8D85;&#x6781;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x8D85;&#x7EA7;&#x672C;&apos;</span>,<span class="hljs-string">&apos;&#x7D22;&#x5C3C;&apos;</span>,<span class="hljs-string">&apos;7999&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;ipad mini 7.9&#x82F1;&#x5BF8;&#x5E73;&#x677F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x5E73;&#x677F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x82F9;&#x679C;&apos;</span>,<span class="hljs-string">&apos;1998&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;ipad air 9.7&#x82F1;&#x5BF8;&#x5E73;&#x677F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x5E73;&#x677F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x82F9;&#x679C;&apos;</span>,<span class="hljs-string">&apos;3388&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;ipad mini &#x914D;&#x5907; retina &#x663E;&#x793A;&#x5C4F;&apos;</span>,<span class="hljs-string">&apos;&#x5E73;&#x677F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x82F9;&#x679C;&apos;</span>,<span class="hljs-string">&apos;2788&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;ideacentre c340 20&#x82F1;&#x5BF8;&#x4E00;&#x4F53;&#x7535;&#x8111; &apos;</span>,<span class="hljs-string">&apos;&#x53F0;&#x5F0F;&#x673A;&apos;</span>,<span class="hljs-string">&apos;&#x8054;&#x60F3;&apos;</span>,<span class="hljs-string">&apos;3499&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;vostro 3800-r1206 &#x53F0;&#x5F0F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x53F0;&#x5F0F;&#x673A;&apos;</span>,<span class="hljs-string">&apos;&#x6234;&#x5C14;&apos;</span>,<span class="hljs-string">&apos;2899&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;imac me086ch/a 21.5&#x82F1;&#x5BF8;&#x4E00;&#x4F53;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x53F0;&#x5F0F;&#x673A;&apos;</span>,<span class="hljs-string">&apos;&#x82F9;&#x679C;&apos;</span>,<span class="hljs-string">&apos;9188&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;at7-7414lp &#x53F0;&#x5F0F;&#x7535;&#x8111; linux &#xFF09;&apos;</span>,<span class="hljs-string">&apos;&#x53F0;&#x5F0F;&#x673A;&apos;</span>,<span class="hljs-string">&apos;&#x5B8F;&#x7881;&apos;</span>,<span class="hljs-string">&apos;3699&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;z220sff f4f06pa&#x5DE5;&#x4F5C;&#x7AD9;&apos;</span>,<span class="hljs-string">&apos;&#x670D;&#x52A1;&#x5668;/&#x5DE5;&#x4F5C;&#x7AD9;&apos;</span>,<span class="hljs-string">&apos;&#x60E0;&#x666E;&apos;</span>,<span class="hljs-string">&apos;4288&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;poweredge ii&#x670D;&#x52A1;&#x5668;&apos;</span>,<span class="hljs-string">&apos;&#x670D;&#x52A1;&#x5668;/&#x5DE5;&#x4F5C;&#x7AD9;&apos;</span>,<span class="hljs-string">&apos;&#x6234;&#x5C14;&apos;</span>,<span class="hljs-string">&apos;5388&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;mac pro&#x4E13;&#x4E1A;&#x7EA7;&#x53F0;&#x5F0F;&#x7535;&#x8111;&apos;</span>,<span class="hljs-string">&apos;&#x670D;&#x52A1;&#x5668;/&#x5DE5;&#x4F5C;&#x7AD9;&apos;</span>,<span class="hljs-string">&apos;&#x82F9;&#x679C;&apos;</span>,<span class="hljs-string">&apos;28888&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;hmz-t3w &#x5934;&#x6234;&#x663E;&#x793A;&#x8BBE;&#x5907;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&#x914D;&#x4EF6;&apos;</span>,<span class="hljs-string">&apos;&#x7D22;&#x5C3C;&apos;</span>,<span class="hljs-string">&apos;6999&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;&#x5546;&#x52A1;&#x53CC;&#x80A9;&#x80CC;&#x5305;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&#x914D;&#x4EF6;&apos;</span>,<span class="hljs-string">&apos;&#x7D22;&#x5C3C;&apos;</span>,<span class="hljs-string">&apos;99&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;x3250 m4&#x673A;&#x67B6;&#x5F0F;&#x670D;&#x52A1;&#x5668;&apos;</span>,<span class="hljs-string">&apos;&#x670D;&#x52A1;&#x5668;/&#x5DE5;&#x4F5C;&#x7AD9;&apos;</span>,<span class="hljs-string">&apos;ibm&apos;</span>,<span class="hljs-string">&apos;6888&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span> 
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> goods <span class="hljs-keyword">values</span>(<span class="hljs-number">0</span>,<span class="hljs-string">&apos;&#x5546;&#x52A1;&#x53CC;&#x80A9;&#x80CC;&#x5305;&apos;</span>,<span class="hljs-string">&apos;&#x7B14;&#x8BB0;&#x672C;&#x914D;&#x4EF6;&apos;</span>,<span class="hljs-string">&apos;&#x7D22;&#x5C3C;&apos;</span>,<span class="hljs-string">&apos;99&apos;</span>,<span class="hljs-keyword">default</span>,<span class="hljs-keyword">default</span>);</span>
+</code></pre>
+<p><strong>&#x8868;&#x7ED3;&#x6784;&#x8BF4;&#x660E;:</strong></p>
+<ul>
+<li>id &#x8868;&#x793A;&#x4E3B;&#x952E; &#x81EA;&#x589E;</li>
+<li>name &#x8868;&#x793A;&#x5546;&#x54C1;&#x540D;&#x79F0;</li>
+<li>cate_name &#x8868;&#x793A;&#x5206;&#x7C7B;&#x540D;&#x79F0;</li>
+<li>brand_name &#x8868;&#x793A;&#x54C1;&#x724C;&#x540D;&#x79F0;</li>
+<li>price &#x8868;&#x793A;&#x4EF7;&#x683C;</li>
+<li>is_show &#x8868;&#x793A;&#x662F;&#x5426;&#x663E;&#x793A;</li>
+<li>is_saleoff &#x8868;&#x793A;&#x662F;&#x5426;&#x552E;&#x5B8C;</li>
+</ul>
+<h3 id="2-sql&#x8BED;&#x53E5;&#x6F14;&#x7EC3;">2. SQL&#x8BED;&#x53E5;&#x6F14;&#x7EC3;</h3>
+<ol>
+<li><p>&#x67E5;&#x8BE2;&#x7C7B;&#x578B;cate_name&#x4E3A; &apos;&#x8D85;&#x7EA7;&#x672C;&apos; &#x7684;&#x5546;&#x54C1;&#x540D;&#x79F0;&#x3001;&#x4EF7;&#x683C;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span>,price <span class="hljs-keyword">from</span> goods <span class="hljs-keyword">where</span> cate_name = <span class="hljs-string">&apos;&#x8D85;&#x7EA7;&#x672C;&apos;</span>;</span>
+</code></pre>
+</li>
+<li><p>&#x663E;&#x793A;&#x5546;&#x54C1;&#x7684;&#x5206;&#x7C7B;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> cate_name <span class="hljs-keyword">from</span> goods <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cate_name;</span>
+</code></pre>
+</li>
+<li><p>&#x6C42;&#x6240;&#x6709;&#x7535;&#x8111;&#x4EA7;&#x54C1;&#x7684;&#x5E73;&#x5747;&#x4EF7;&#x683C;,&#x5E76;&#x4E14;&#x4FDD;&#x7559;&#x4E24;&#x4F4D;&#x5C0F;&#x6570;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> <span class="hljs-keyword">round</span>(<span class="hljs-keyword">avg</span>(price),<span class="hljs-number">2</span>) <span class="hljs-keyword">as</span> avg_price <span class="hljs-keyword">from</span> goods;</span>
+</code></pre>
+</li>
+<li><p>&#x663E;&#x793A;&#x6BCF;&#x79CD;&#x5546;&#x54C1;&#x7684;&#x5E73;&#x5747;&#x4EF7;&#x683C;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> cate_name,<span class="hljs-keyword">avg</span>(price) <span class="hljs-keyword">from</span> goods <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cate_name;</span>
+</code></pre>
+</li>
+<li><p>&#x67E5;&#x8BE2;&#x6BCF;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x5546;&#x54C1;&#x4E2D; &#x6700;&#x8D35;&#x3001;&#x6700;&#x4FBF;&#x5B9C;&#x3001;&#x5E73;&#x5747;&#x4EF7;&#x3001;&#x6570;&#x91CF;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> cate_name,<span class="hljs-keyword">max</span>(price),<span class="hljs-keyword">min</span>(price),<span class="hljs-keyword">avg</span>(price),<span class="hljs-keyword">count</span>(*) 
+ <span class="hljs-keyword">from</span> goods <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cate_name;</span>
+</code></pre>
+</li>
+<li><p>&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x4EF7;&#x683C;&#x5927;&#x4E8E;&#x5E73;&#x5747;&#x4EF7;&#x683C;&#x7684;&#x5546;&#x54C1;&#xFF0C;&#x5E76;&#x4E14;&#x6309;&#x4EF7;&#x683C;&#x964D;&#x5E8F;&#x6392;&#x5E8F;</p>
+<pre><code class="lang-sql"> <span class="hljs-operator"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,price <span class="hljs-keyword">from</span> goods 
+ <span class="hljs-keyword">where</span> price &gt; (<span class="hljs-keyword">select</span> <span class="hljs-keyword">round</span>(<span class="hljs-keyword">avg</span>(price),<span class="hljs-number">2</span>) <span class="hljs-keyword">as</span> avg_price <span class="hljs-keyword">from</span> goods) 
+ <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> price <span class="hljs-keyword">desc</span>;</span>
+</code></pre>
+</li>
+</ol>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../mysqlquery/外键SQL语句的编写.html" class="navigation navigation-prev " aria-label="Previous page: 外键约束SQL语句的编写"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../mysqlhigh/index.html" class="navigation navigation-next " aria-label="Next page: MySQL数据库的高级使用"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"splitter":{},"emphasize":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book python高级 -->
+</html>

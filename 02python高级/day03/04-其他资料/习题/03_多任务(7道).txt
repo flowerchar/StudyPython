@@ -1,0 +1,160 @@
+概念题1:
+	
+	说一下什么是进程什么是线程以及两者的区别:
+	
+	参考答案:
+		1.进程是操作系统资源分配的最小单位，线程是CPU调度的最小单位
+		2.线程依附于进程，没有进程就没有线程，一个进程默认提供一个线程（主线程），进程可以创建多个线程
+		3.进程不共享全局变量，同一个进程中的线程共享全局变量（资源竞争-->互斥锁，互斥锁可能产生死锁）
+		4.进程开销大但可以利用多核（并行），线程开销小但不能利用多核（并发）
+
+概念题2:
+	
+	关于线程资源竞争的问题:
+	1. 100万次加法, 线程1和线程2谁先执行完?
+	2. 线程1计算的结果一定比线程2小吗?
+	3. 某个线程计算的结果有没有可能小于100万?为什么?
+	
+	参考答案:
+		1. 不一定, 因为线程是由CPU进行调度的, 没有执行顺序, 所以哪个线程先执行完不一定;
+		2. 不一定, 因为无法确定哪个线程先执行完, 也没办法确定每个线程每次执行的时间, 所以无法判断两个结果大小;
+		3. 有可能, 因为多线程共享全局变量, 有可能线程1在给全局变量赋值之后(如给全局变量赋值为num=10), 还没来得及进行下一步计算, CPU开始执行线程2, 而线程2上次执行结果小于线程1(如为num=5), 线程2继续执行, 会将5复制给全局变量num, 这样线程1就会有5次的加法计算没有产生效果, 最终线程1的计算结果小于100万, 次概率很小
+
+概念题3:
+	什么是互斥锁? 说出互斥锁的应用场景及优缺点.
+	
+	参考答案:
+		互斥锁: 为保证共享数据操作的完整性, threading模块给我们提供了一个Lock类, 我们把这个类创建的对象对应于一个可称为"互斥锁" 的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象.
+		
+		互斥锁应用场景: 互斥锁可用于多线程中有可能产生共享数据(如全局变量)竞争的场景.
+		
+		优点: 避免资源竞争
+		缺点: 1.阻止了多线程并发执行，包含锁的某段代码实际上只能以单线程模式执行，效率就大大地下降了; 2.容易造成死锁
+
+概念题4:	
+	什么是死锁?怎样避免死锁?
+	
+	参考答案:
+		死锁: 在两个或多个线程中，如果每个线程锁定了其他线程试图锁定的资源，此时会造成这些线程永久阻塞，这个现象就叫死锁.
+		
+		避免死锁: 在设计程序时, 尽量减少资源竞争, 无法避免资源竞争时, 各个线程及时释放锁定的资源.
+
+概念题5:
+	简述并发和并行:
+	
+	参考答案:
+	
+		并发: CPU在一段时间内交替执行多个任务
+		并行: CPU在一段时间内只执行一个任务, 利用多个CPU完成执行多任务的功能
+
+
+综合练习题1：
+
+	创建两个线程，其中一个输出1-52，另外一个输出A-Z。
+	输出格式要求：
+	12A 
+	34B 
+	56C 
+	...
+	5152Z
+
+
+参考代码:
+代码1:
+import threading
+
+lock1 = threading.Lock()
+lock2 = threading.Lock()
+def func1():
+    for i in range(1, 52, 2):
+        lock2.acquire()
+        print("%s %s " % (i, i + 1), end="")
+        lock1.release()
+
+
+def func2():
+    for j in range(65, 91):
+        lock1.acquire()
+        print(chr(j))
+        lock2.release()
+
+
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=func1)
+    t2 = threading.Thread(target=func2)
+
+    lock1.acquire()
+
+    t1.start()
+    t2.start()
+	
+代码2:
+import threading
+
+n = 0
+
+
+def func1():
+    for i in range(1, 52, 2):
+        global n
+        while True:
+            if n == 0:
+                print("%s %s " % (i, i + 1), end="")
+                n = 1
+                break
+
+
+def func2():
+    for j in range(65, 91):
+        global n
+        while True:
+            if n == 1:
+                print(chr(j))
+                n = 0
+                break
+
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=func1)
+    t2 = threading.Thread(target=func2)
+
+    t1.start()
+    t2.start()
+
+
+
+综合练习题2：
+#　使用多进程完成以下任务：
+# 1.开辟两个子进程
+# 2.子进程1设置为死循环, 每隔1秒打印一次"进程信息"
+# 3.子进程2接收一个整数类型参数, 进程2循环的次数即为传入的整形数字, 每个1秒循环一次
+# 4.子进程2结束的时候, 子进程1也跟着结束
+
+参考代码:
+import multiprocessing
+import time
+
+
+def func1():
+    while True:
+        print("func1")
+        time.sleep(1)
+
+def func2(n):
+    for i in range(n):
+        print("func2")
+        time.sleep(1)
+
+
+
+if __name__ == '__main__':
+    p1 = multiprocessing.Process(target=func1)
+    p2 = multiprocessing.Process(target=func2, args=(5,))
+
+    p1.daemon = True
+
+    p1.start()
+    p2.start()
+
+    p2.join()

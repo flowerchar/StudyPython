@@ -1,0 +1,136 @@
+练习题1: 
+	重定向>、grep、管道|命令的使用		
+
+	 1. 将/usr/local/bin/路径下所有的文件（文件夹）的名字存储到 当前文件夹下的A/B/C/haha.py文件中
+		```
+		cd ~
+		ls /usr/local/bin > ./A/B/C/haha.py
+		```
+
+	 2. 将当前的路径信息存储到 test.txt文件中
+		```
+		pwd > ./test.txt
+		```
+		
+	 3. 查看test.txt文件中内容
+		```
+		cat test.txt
+		```
+		
+	 4. 显示A/B/haha.py文件的所有内容
+		```
+		cat A/B/haha.py
+		```
+		
+	 5. 搜索A/B/haha.py文件中以字母p开头的所有内容
+		```
+		cd ~
+		grep -n "^p" A/B/haha.py
+		```
+	 6. 查找当前文件夹下所有含'd'的文件或文件夹
+		```
+		ls | grep d
+		```
+
+练习题2
+
+	练习常用命令 
+
+
+	 1. 将历史命令信息，存储到桌面上的test3文件夹中的1.txt文件中
+
+			cd /home/python/Desktop
+			mkdir test3
+			history > test3/1.txt
+
+	 2. 将1.txt文件中，包含m的所有信息，存到test3文件夹中的2.txt文件中
+
+			cd /home/python/Desktop
+			grep "m" test3/1.txt > test3/2.txt
+
+	 3. 为2.txt创建一个软连接(2-softlink.txt)
+
+			cd /home/python/Desktop
+			ln -s /home/python/Desktop/test3/2.txt test3/2-softlink.txt
+
+		注意：如果是在目标文件所在目录以外的目录创建软链接，那么软链接的目标文件路径必须写为绝对路径
+
+	 4. 为1.txt创建一个硬链接（1-hardlink.txt）
+
+			cd /home/python/Desktop
+			ln test3/1.txt test3/1-hardlink.txt
+
+	 5. 删除1.txt文件
+
+			cd /home/python/Desktop
+			rm test3/1.txt
+
+	 6. 将1-hardlink.txt文件中所有不包含m的所有信息，存储到test3/3.txt中
+
+			cd /home/python/Desktop
+			grep -v "m" test3/1-hardlink.txt > test3/3.txt
+
+	 7. 使用重定向合并2-softlink.txt、3.txt文件到4.txt文件中
+
+			cd /home/python/Desktop
+			cat test3/2-softlink test3/3.txt > test3/4.txt
+
+练习题3
+
+
+ 1. tar命令的作用是什么？
+	```
+	打包文件;
+	tar是Unix/Linux中最常用的备份工具;
+	此命令可以把一系列文件归档到一个大文件中;
+	也可以把档案文件解开以恢复数据;
+	```
+ 2. tar命令的-c和-x参数分别代表什么意思
+	```
+	-c	生成档案文件，创建打包文件
+	-x	解开档案文件
+	```
+ 3. 请分别说出gzip常用参数的含义
+	```
+	-d	解压
+	-r	压缩所有子目录
+	```
+ 4. 写出使用tar打包文件的用法
+	```
+	打包：tar -cvf test.tar ./*.py
+	解包：tar -xvf test.tar
+	注意：中括号代表，参数可选
+	```
+ 5. 写出使用tar打包并压缩为**.tar.gz的命令
+	```
+	tar -zcvf **.tar.gz 需要打包的文件
+	```
+ 6. 写出解压缩**.tar.gz的命令
+	```
+	tar -zxvf **.tar.gz
+	-C 可以指定解压的目录
+	-z 制定压缩的格式为.gz
+	```
+ 7. 写出使用tar打包并压缩为**.tar.bz2的命令
+	```
+	tar -jcvf **.tar.bz2 ./*.py
+	-j 指定压缩的格式是.bz2
+	```
+ 8. 写出解压缩**.tar.bz2的命令
+	```
+	tar -jxvf **.tar.bz2
+	-j 指定压缩的格式是.bz2
+	```
+ 9. 写出使用zip压缩文件的用法
+	```
+	zip 目标文件 源文件
+	如把test.txt压缩到zip包中：zip test test.txt
+	会得到一个test.zip，后缀名会自动被添加
+	```
+ 10. 写出使用unzip解压文件的用法
+	```
+	unzip -d 解压后目录文件 压缩文件
+	```
+练习题4
+
+	使用vim编写任意一段代码(练习vim的三种工作模式)

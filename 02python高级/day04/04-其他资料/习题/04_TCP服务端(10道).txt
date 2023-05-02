@@ -1,0 +1,205 @@
+概念题1: 什么是网络通信？
+	参考答案：使用网络能够把多方链接在一起，然后可以进行数据传递。
+		
+概念题2: 什么是网络编程？
+	参考答案：让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。
+		
+概念题3: 什么是IP地址？
+
+	参考答案：IP地址是指互联网协议地址，用来在网络中标记一台电脑。
+		
+概念题4: 什么是端口？
+
+	参考答案：进程与外界通讯交流的出口。
+		
+		知名端口（Well Known Ports）
+		知名端口是众所周知的端口号，范围从0到1023
+		
+		动态端口（Dynamic Ports）
+		动态端口的范围是从1024到65535
+			
+概念题5: 什么是socket, 如何创建TCP的socket?
+
+	参考答案: socket(简称 套接字) 是进程间通信的一种方式。
+	    它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于 Socket 来完成通信的
+	
+	创建socket：
+		import socket
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+概念题6: Python代码如何进行编码转换?
+	参考答案:
+		str.encode()-->bytes
+		bytes.decode()-->str
+	
+概念题7: 如何重复使用端口号?
+	参考答案:
+		套接字对象.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+		
+概念题8: 对TCP套接字客户端和服务端进行简单比较
+	参考答案:
+		1. TCP套接字客户端和服务端的创建是一样的都是socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+		2. TCP套接字服务端需要绑定端口号(bind()), 客户端不需要绑定;
+		3. TCP套接字服务端需要监听客户端(listen(128)), 客户端不需要监听;
+		4. TCP套接字服务端在监听到新的客户端到来时, 会产生一个新的套接字与该客户端进行通信, 客户端始终是一个套接字;
+		5. TCP套接字客户端的connect(), 对应于TCP套接字服务端的accept().
+
+
+综合练习题1：
+	编写TCP服务器接收客户端的消息, 并把客户端发送的信息原样返回给客户端。
+
+参考代码：
+import socket
+
+def tcp_server():
+    addr = ("",8000)
+    tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_socket.bind(addr)
+    tcp_socket.listen(128)
+    while True:
+        newSocket, clientAddr = tcp_socket.accept()
+        while True:
+            data = newSocket.recv(1024)
+            if data:
+                print('receive from %s: %s' %(clientAddr, data))
+				newSocket.send(data)
+			else:
+				break
+				
+        newSocket.close()
+
+if __name__ == '__main__':
+    tcp_server()
+
+
+综合练习题2: 
+	分别编写文件下载服务端和客户端, 完成文件下载功能。
+	要求:
+		1.代码分为服务端和客户端, 客户端发送要下载的文件名给服务端, 服务端找到该文件就读取文件内容并发送给客户端, 客户端接收文件内容并保存到本地, 如果服务端找不到该文件, 就返回"找不到您要下载的文件"给客户端;
+		2.客户端下载过程中能根据已下载的文件大小显示下载进度。
+
+参考代码：
+1.服务端代码:
+import socket
+import os
+
+
+def send_file():
+
+    tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+    # 绑定本地信息
+    tcp_server_socket.bind(("", 8080))
+
+    # 让套接字变为监听套接字（被动套接字）
+    tcp_server_socket.listen(128)
+
+    # 使用accept等待新客户端的链接
+    client_socket,client_addr = tcp_server_socket.accept()
+    print("一个新的客户端来到了...信息是：", client_addr)
+
+    # client_socket.send("请输入您要下载的文件:".encode("gbk"))
+
+    recv_data = client_socket.recv(1024).decode()
+
+    if recv_data in os.listdir():
+        print("您要下载的文件是：%s" % recv_data)
+        # client_socket.send("找到了您要下载的文件".encode())
+        client_socket.send(str(os.path.getsize(recv_data)).encode())
+        try:
+            f = open(recv_data, "rb")
+            while True:
+                content = f.read(1024)
+                if content:
+                    # 如果从文件中读取了数据，那么就给tcp客户端发送过去
+                    client_socket.send(content)
+                else:
+                    break
+
+            f.close()
+        except Exception as ret:
+            print("发送文件失败:%s " % ret)
+        else:
+            print("发送文件(%s)成功...." % recv_data)
+    else:
+        print("找不到您要下载的文件")
+        client_socket.send("找不到您要下载的文件".encode())
+
+    client_socket.close()
+    tcp_server_socket.close()
+
+
+if __name__ == '__main__':
+
+    send_file()
+
+2.客户端代码:
+import socket
+import os
+import time
+import threading
+
+
+def jindu(dest_file_name, file_size):
+    """显示下载进度"""
+    # 每个一秒循环查看一次已下载文件大小
+    while True:
+        if os.path.exists(dest_file_name):
+            has_down = os.path.getsize('C:\\Users\\Administrator\\Desktop\\' + dest_file_name)
+            jindu_num = (has_down/file_size)*100
+            # 输出进度
+            print("已下载%.2f%%" % jindu_num)
+            if int(jindu_num) == 100:
+                break
+            time.sleep(1)
+
+
+def download_file():
+    """下载文件"""
+
+    tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    dest_ip = input('请输入您要请求的ip地址:')
+    dest_port = int(input('请输入您要请求的端口号:'))
+
+    tcp_client_socket.connect((dest_ip, dest_port))
+
+    dest_file_name = input('请输入您要下载的文件名:')
+
+    tcp_client_socket.send(dest_file_name.encode())
+
+    file_size = int(tcp_client_socket.recv(1024).decode())
+    if file_size:
+        # 如果接收到要下载文件的大小, 开启下载进度进程
+        t = threading.Thread(target=jindu, args=(dest_file_name, file_size))
+        t.start()
+        try:
+            # 在桌面创建新文件, 并以"wb"模式打开
+            f = open('C:\\Users\\Administrator\\Desktop\\' + dest_file_name, "wb")
+
+            while True:
+                # 循环接收文件内容
+                recv_data = tcp_client_socket.recv(1024)
+                if recv_data:
+                    f.write(recv_data)
+                else:
+                    break
+        except Exception as ret:
+            print("下载文件出错:%s" % ret)
+        else:
+            print("下载(%s)已完成" % dest_file_name)
+            f.close()
+
+    else:
+        print("您要下载的文件不存在!")
+
+    tcp_client_socket.close()
+
+
+if __name__ == '__main__':
+    download_file()
+
+				1
+	
+

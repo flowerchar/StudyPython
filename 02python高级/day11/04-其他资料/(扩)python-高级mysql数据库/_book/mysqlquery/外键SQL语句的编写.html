@@ -1,0 +1,680 @@
+<!DOCTYPE HTML>
+<html lang="zh-tw" >
+    <!-- Start book python高级 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>外键约束SQL语句的编写 | python高级</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-splitter/splitter.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-emphasize/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../mysqlquery/分组和聚合函数的组合使用.html" />
+    
+    
+    <link rel="prev" href="../mysqlquery/数据库设计之三范式.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="2.9"
+        data-chapter-title="外键约束SQL语句的编写"
+        data-filepath="mysqlquery/外键SQL语句的编写.md"
+        data-basepath=".."
+        data-revision="Tue Feb 04 2020 09:08:19 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介紹
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="mysqlbase/index.html">
+            
+                
+                    <a href="../mysqlbase/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        MySQL数据库的基本使用
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="mysqlbase/数据库.html">
+            
+                
+                    <a href="../mysqlbase/数据库.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="mysqlbase/关系型数据库管理系统.html">
+            
+                
+                    <a href="../mysqlbase/关系型数据库管理系统.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        关系型数据库管理系统
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="mysqlbase/MySQL数据库.html">
+            
+                
+                    <a href="../mysqlbase/MySQL数据库.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        MySQL数据库
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="mysqlbase/数据类型和约束.html">
+            
+                
+                    <a href="../mysqlbase/数据类型和约束.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        数据类型和约束
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="mysqlbase/命令行客户端MySQL的使用.html">
+            
+                
+                    <a href="../mysqlbase/命令行客户端MySQL的使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        命令行客户端MySQL的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="mysqlbase/as和distinct关键字.html">
+            
+                
+                    <a href="../mysqlbase/as和distinct关键字.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        as和distinct关键字
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="mysqlbase/where条件查询.html">
+            
+                
+                    <a href="../mysqlbase/where条件查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        where条件查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="mysqlbase/排序.html">
+            
+                
+                    <a href="../mysqlbase/排序.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="mysqlbase/分页查询.html">
+            
+                
+                    <a href="../mysqlbase/分页查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        分页查询
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="mysqlquery/index.html">
+            
+                
+                    <a href="../mysqlquery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        MySQL数据库的条件查询
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="mysqlquery/聚合函数.html">
+            
+                
+                    <a href="../mysqlquery/聚合函数.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        聚合函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="mysqlquery/分组查询.html">
+            
+                
+                    <a href="../mysqlquery/分组查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        分组查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="mysqlquery/内连接.html">
+            
+                
+                    <a href="../mysqlquery/内连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        连接查询-内连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="mysqlquery/左连接.html">
+            
+                
+                    <a href="../mysqlquery/左连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        连接查询-左连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="mysqlquery/右连接.html">
+            
+                
+                    <a href="../mysqlquery/右连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        连接查询-右连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="mysqlquery/自连接.html">
+            
+                
+                    <a href="../mysqlquery/自连接.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        连接查询-自连接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="mysqlquery/子查询.html">
+            
+                
+                    <a href="../mysqlquery/子查询.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        子查询
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="mysqlquery/数据库设计之三范式.html">
+            
+                
+                    <a href="../mysqlquery/数据库设计之三范式.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        数据库设计之三范式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.9" data-path="mysqlquery/外键SQL语句的编写.html">
+            
+                
+                    <a href="../mysqlquery/外键SQL语句的编写.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                        外键约束SQL语句的编写
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="mysqlquery/分组和聚合函数的组合使用.html">
+            
+                
+                    <a href="../mysqlquery/分组和聚合函数的组合使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        演练-分组和聚合函数的组合使用
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="mysqlhigh/index.html">
+            
+                
+                    <a href="../mysqlhigh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        MySQL数据库的高级使用
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="mysqlhigh/将查询结果插入到其它表中.html">
+            
+                
+                    <a href="../mysqlhigh/将查询结果插入到其它表中.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        将查询结果插入到其它表中
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="mysqlhigh/使用连接更新表中某个字段数据.html">
+            
+                
+                    <a href="../mysqlhigh/使用连接更新表中某个字段数据.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        使用连接更新表中某个字段数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="mysqlhigh/创建表并给某个字段添加数据.html">
+            
+                
+                    <a href="../mysqlhigh/创建表并给某个字段添加数据.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        创建表并给某个字段添加数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="mysqlhigh/修改表结构.html">
+            
+                
+                    <a href="../mysqlhigh/修改表结构.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        修改goods表结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="mysqlhigh/事务.html">
+            
+                
+                    <a href="../mysqlhigh/事务.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        事务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="mysqlhigh/索引.html">
+            
+                
+                    <a href="../mysqlhigh/索引.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        索引
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="mysqlhigh/PyMySQL的使用.html">
+            
+                
+                    <a href="../mysqlhigh/PyMySQL的使用.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        PyMySQL的使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="mysqlhigh/京东数据库案例练习.html">
+            
+                
+                    <a href="../mysqlhigh/京东数据库案例练习.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        京东数据库案例练习
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本書使用 GitBook 釋出
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >python高级</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="&#x5916;&#x952E;sql&#x8BED;&#x53E5;&#x7684;&#x7F16;&#x5199;">&#x5916;&#x952E;SQL&#x8BED;&#x53E5;&#x7684;&#x7F16;&#x5199;</h1>
+<p><strong>&#x5B66;&#x4E60;&#x76EE;&#x6807;</strong></p>
+<ul>
+<li>&#x80FD;&#x591F;&#x5199;&#x51FA;&#x5220;&#x9664;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x7684;SQL&#x8BED;&#x53E5;</li>
+</ul>
+<hr>
+<h3 id="1-&#x5916;&#x952E;&#x7EA6;&#x675F;&#x4F5C;&#x7528;">1. &#x5916;&#x952E;&#x7EA6;&#x675F;&#x4F5C;&#x7528;</h3>
+<p>&#x5916;&#x952E;&#x7EA6;&#x675F;:&#x5BF9;&#x5916;&#x952E;&#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#x548C;&#x63D2;&#x5165;&#x65F6;&#x4F1A;&#x548C;&#x5F15;&#x7528;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#xFF0C;&#x6570;&#x636E;&#x5982;&#x679C;&#x4E0D;&#x5408;&#x6CD5;&#x5219;&#x66F4;&#x65B0;&#x548C;&#x63D2;&#x5165;&#x4F1A;&#x5931;&#x8D25;&#xFF0C;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x7684;&#x6709;&#x6548;&#x6027;</p>
+<h3 id="2-&#x5BF9;&#x4E8E;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;">2. &#x5BF9;&#x4E8E;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;</h3>
+<pre><code class="lang-sql"><span class="hljs-comment">-- &#x4E3A;cls_id&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;</span>
+<span class="hljs-operator"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> students <span class="hljs-keyword">add</span> foreign <span class="hljs-keyword">key</span>(cls_id) <span class="hljs-keyword">references</span> classes(<span class="hljs-keyword">id</span>);</span>
+</code></pre>
+<h3 id="3-&#x5728;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x5916;&#x952E;&#x7EA6;&#x675F;">3. &#x5728;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x5916;&#x952E;&#x7EA6;&#x675F;</h3>
+<pre><code class="lang-sql"><span class="hljs-comment">-- &#x521B;&#x5EFA;&#x5B66;&#x6821;&#x8868;</span>
+<span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> school(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> primary <span class="hljs-keyword">key</span> auto_increment, 
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">10</span>)
+);</span>
+
+<span class="hljs-comment">-- &#x521B;&#x5EFA;&#x8001;&#x5E08;&#x8868;</span>
+<span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> teacher(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">int</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> primary <span class="hljs-keyword">key</span> auto_increment, 
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">10</span>), 
+    s_id <span class="hljs-built_in">int</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>, 
+    foreign <span class="hljs-keyword">key</span>(s_id) <span class="hljs-keyword">references</span> school(<span class="hljs-keyword">id</span>)
+);</span>
+</code></pre>
+<h3 id="4-&#x5220;&#x9664;&#x5916;&#x952E;&#x7EA6;&#x675F;">4. &#x5220;&#x9664;&#x5916;&#x952E;&#x7EA6;&#x675F;</h3>
+<pre><code class="lang-sql"><span class="hljs-comment">-- &#x9700;&#x8981;&#x5148;&#x83B7;&#x53D6;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x540D;&#x79F0;,&#x8BE5;&#x540D;&#x79F0;&#x7CFB;&#x7EDF;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;,&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x8868;&#x521B;&#x5EFA;&#x8BED;&#x53E5;&#x6765;&#x83B7;&#x53D6;&#x540D;&#x79F0;</span>
+<span class="hljs-operator"><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> teacher;</span>
+
+<span class="hljs-comment">-- &#x83B7;&#x53D6;&#x540D;&#x79F0;&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x540D;&#x79F0;&#x6765;&#x5220;&#x9664;&#x5916;&#x952E;&#x7EA6;&#x675F;</span>
+<span class="hljs-operator"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> teacher <span class="hljs-keyword">drop</span> foreign <span class="hljs-keyword">key</span> &#x5916;&#x952E;&#x540D;;</span>
+</code></pre>
+<h3 id="5-&#x5C0F;&#x7ED3;">5. &#x5C0F;&#x7ED3;</h3>
+<ul>
+<li>&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;: alter table &#x4ECE;&#x8868; add foreign key(&#x5916;&#x952E;&#x5B57;&#x6BB5;) references &#x4E3B;&#x8868;(&#x4E3B;&#x952E;&#x5B57;&#x6BB5;);</li>
+<li>&#x5220;&#x9664;&#x5916;&#x952E;&#x7EA6;&#x675F;: alter table &#x8868;&#x540D; drop foreign key &#x5916;&#x952E;&#x540D;;</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../mysqlquery/数据库设计之三范式.html" class="navigation navigation-prev " aria-label="Previous page: 数据库设计之三范式"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../mysqlquery/分组和聚合函数的组合使用.html" class="navigation navigation-next " aria-label="Next page: 演练-分组和聚合函数的组合使用"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-splitter/splitter.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"splitter":{},"emphasize":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book python高级 -->
+</html>
